@@ -71,5 +71,6 @@ Route::middleware([
         //key jako parametr opcjonalny
          //Route::get('/chat{key?}', Main::class)->name('chat')->middleware(['check.apprentice']);
         Route::get('/chat{key?}', Main::class)->name('chat');
+        //push test
 
     });
