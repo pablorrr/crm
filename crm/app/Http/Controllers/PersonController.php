@@ -75,23 +75,23 @@ class PersonController extends Controller
         //abort access to apprentice, resource not allowed to use middelware(no perticular path)!!!
       //  $this->checkApprentice($request);
 
-      
+
       $this->checkApprentice($request);
 
       $person = new Person();
-     
+
 
       $this->savePerson($request, $person);//todo DI
 
-      if ($request->hasFile('photo')) {   
+      if ($request->hasFile('photo')) {
 
        $file = $request->file('photo');
        $imageName = $file->getClientOriginalName();
-      
+
        $this->savePersonPhoto($person, $imageName,  $file);
 
-      }   
-      
+      }
+
       return redirect()->route('persons.index')->with([
             'status' => [
                 'type' => 'success',
@@ -129,15 +129,15 @@ class PersonController extends Controller
         $this->checkApprentice($request);
 
         $person = Person::findOrFail($person_id);
-       
+
 
         $this->savePerson($request, $person);
 
-        if ($request->hasFile('photo')) {   
+        if ($request->hasFile('photo')) {
 
          $file = $request->file('photo');
          $imageName = $file->getClientOriginalName();
-        
+
          $this->savePersonPhoto($person, $imageName,  $file);
 
         }
@@ -215,19 +215,20 @@ class PersonController extends Controller
         $person->surname = $request['surname'];
         $person->email = $request['email'];
         $person->phone = $request['phone'];
-     
+
         $person->save();
         // $person::create($request->all());- nie uzywaj tej metody zle obrazki sie wczytuja
-     
+
     }
 
     public function savePersonPhoto(Person $person, string $imageName, $file): void
-   
+
     {
         $person->photo = $imageName;
         $person->save();
         // $person::create($request->all());- nie uzywaj tej metody zle obrazki sie wczytuja
-        $file->move(\public_path('photo/'), $imageName);
+       // $file->move(__DIR__.'/../../../../crm-pbl/photo/', $imageName);
+        $file->move(app()->basePath().'/../crm-pbl/photo/', $imageName);
 
     }
 }
