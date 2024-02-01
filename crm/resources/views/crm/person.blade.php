@@ -16,7 +16,7 @@
                         <table class="table table-striped">
                             <thead class="thead-dark">
                             <tr>
-                                <th scope="col">id</th>
+                                <th scope="col">lp</th>
                                 <th scope="col">Zdjęcie</th>
                                 <th scope="col">Imię</th>
                                 <th scope="col">Nazwisko</th>
@@ -32,13 +32,14 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @php $ord_no=1; @endphp
                             @foreach($persons as $person)
                                 <tr>
-                                    <th scope="row">{{$person->id}}</th>
+                                    <th scope="row">{{$ord_no++}}</th>
                                     @if($person->photo)
                                         <td><img src="{{url('/photo/'.$person->photo)}}" alt="" width="50px"
                                                  height="50px"/></td>
-                                        @else
+                                    @else
                                         <td><img src="{{url('/photo/default.jpg')}}" alt="" width="50px"
                                                  height="50px"/></td>
                                     @endif

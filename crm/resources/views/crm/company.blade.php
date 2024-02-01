@@ -16,7 +16,7 @@
                         <table class="table table-striped">
                             <thead class="thead-dark">
                             <tr>
-                                <th scope="col">id</th>
+                                <th scope="col">lp</th>
                                 <th scope="col">Nazwa firmy</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Telefon</th>
@@ -31,9 +31,10 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @php $ord_no=1; @endphp
                             @foreach($companies as $company)
                                 <tr>
-                                    <th scope="row">{{$company->id}}</th>
+                                    <th scope="row">{{$ord_no++}}</th>
                                     <td>{{$company->name}}</td>
                                     <td>{{$company->email}}</td>
                                     <td>{{$company->phone}}</td>

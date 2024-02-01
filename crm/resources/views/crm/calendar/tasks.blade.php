@@ -18,12 +18,11 @@
         @if(count($tasks )>0)
             <!-- Page Heading -->
             <form action="/delete-tasks" method="get">
-
                 @csrf
                 <table class="table table-striped">
                     <thead class="thead-dark">
                     <tr>
-                        <th scope="col">id</th>
+                        <th scope="col">LP</th>
                         <th scope="col">Nazwa</th>
                         <th scope="col">Opis</th>
                         <th scope="col">Początek</th>
@@ -39,10 +38,10 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @php $ord_no=1; @endphp
                     @foreach($tasks as $task)
-
                         <tr>
-                            <td>{{$task->id}}</td>
+                            <td>{{$ord_no++}}</td>
                             <td>{{$task->title}}</td>
                             <td>{{$task->description}}</td>
                             <td>{{$task->start_date}}</td>
@@ -65,7 +64,7 @@
                             </td>
 
                         </tr>
-                    </thead>
+                        </thead>
                     @endforeach
 
                     </tbody>
